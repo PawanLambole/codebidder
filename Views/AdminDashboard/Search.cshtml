@@ -1,0 +1,50 @@
+﻿@using Azure.Core
+@model dynamic
+@{
+    ViewData["Title"] = "Search Results";
+    Layout = "~/Views/Shared/aLayout.cshtml";
+
+}
+
+<div class="container mt-5">
+    <h4 class="mb-4">
+        Search Results for:
+        <span class="text-primary">@ViewContext.HttpContext.Request.Query["query"]</span>
+    </h4>
+
+    <!-- User Results -->
+    @if (Model.Users != null && Model.Users.Count > 0)
+    {
+        <h5 class="text-secondary">Users</h5>
+        <ul class="list-group mb-4">
+            @foreach (var user in Model.Users)
+            {
+                <li class="list-group-item">
+                    <a href="@Url.Action("UserProfile", "AdminDashboard", new { id = user.Id })" class="text-decoration-none">
+                        <strong>@user.FirstName @user.LastName</strong> - @user.UserType
+                    </a>
+                </li>
+            }
+        </ul>
+
+    }
+
+    <!-- Project Results -->
+    @if (Model.Projects != null && Model.Projects.Count > 0)
+    {
+        <h5 class="text-secondary">Projects</h5>
+        <ul class="list-group">
+            @foreach (var project in Model.Projects)
+            {
+                <li class="list-group-item">
+                    <strong>@project.ProjectName</strong> - @project.ProjectDescription
+                </li>
+            }
+        </ul>
+    }
+
+    @if ((Model.Users == null || Model.Users.Count == 0) && (Model.Projects == null || Model.Projects.Count == 0))
+    {
+        <div class="alert alert-warning">No results found for your search.</div>
+    }
+</div>

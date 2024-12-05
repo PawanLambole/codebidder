@@ -1,0 +1,43 @@
+﻿@model CodeBidder.Models.Quotation
+
+@{
+    ViewData["Title"] = "Quotation Details";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Quotation Details for Project: @Model.Project.ProjectName</h1>
+
+    <div class="card shadow-sm border-light">
+        <div class="card-header text-white" style="background-color: #395A7F;">
+            <h5 class="mb-0">Quotation by: @Model.Developer.Username</h5>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Project: @Model.Project.ProjectName</h5>
+            <p><strong>Project Description:</strong> @Model.Project.ProjectDescription</p>
+            <p><strong>Estimated Cost:</strong> @Model.EstimatedCost</p>
+            <p><strong>Estimated Timeline:</strong> @Model.Timeline days</p>
+            <p><strong>Additional Notes:</strong> @Model.AdditionalDetails</p>
+
+            <!-- Button to go back to the project quotations list -->
+            <a href="@Url.Action("ViewQuotations", "ClientDashboard", new { projectId = Model.Project.Id })" class="btn btn-outline-primary mt-4">Back to Quotations</a>
+
+            <!-- Button to open the print view -->
+            <a href="@Url.Action("PrintQuotationReport", "ClientDashboard", new { quotationId = Model.Id })" class="btn btn-success ms-3 mt-4">Print Quotation Report</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 8px;
+    }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+</style>

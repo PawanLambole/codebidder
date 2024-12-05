@@ -1,0 +1,259 @@
+﻿@model CodeBidder.Models.ProjectDetailsModel
+
+@{
+    Layout = "~/Views/Shared/ClientLayout.cshtml"; // Specify the path to your new layout
+}
+
+<div class="container mt-5">
+    <div class="form-container shadow-lg p-5 rounded bg-white">
+        <h2 class="form-title mb-4 text-center text-primary">Submit Your Project Details</h2>
+        <hr class="mb-5" />
+
+        <div class="progress mb-4">
+            <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+
+        <form id="projectForm" asp-action="Requirements" method="post">
+            <div class="tab-content mt-4" id="myTabContent">
+                <!-- Project Details -->
+                <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                    <div class="form-group mb-4">
+                        <label asp-for="ProjectName" class="form-label fw-bold">Project Name</label>
+                        <input asp-for="ProjectName" class="form-control" placeholder="Enter project name" required />
+                        <span asp-validation-for="ProjectName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="ProjectDescription" class="form-label fw-bold">Project Description</label>
+                        <textarea asp-for="ProjectDescription" class="form-control" rows="4" placeholder="Provide a brief description of your project" required></textarea>
+                        <span asp-validation-for="ProjectDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="intendedAudience" class="form-label fw-bold">Intended Audience</label>
+                        <input id="intendedAudience" class="form-control" placeholder="Who is your target audience?" required />
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="competitors" class="form-label fw-bold">Competitors</label>
+                        <input id="competitors" class="form-control" placeholder="Mention any key competitors" />
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="projectScope" class="form-label fw-bold">Scope of Work</label>
+                        <textarea id="projectScope" class="form-control" rows="4" placeholder="Define the scope of work for this project"></textarea>
+                    </div>
+                </div>
+
+                <!-- Platform Preferences -->
+                <div class="tab-pane fade" id="platform" role="tabpanel" aria-labelledby="platform-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Platform Preferences</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="TargetPlatform" class="form-label fw-bold">Select the preferred platform</label>
+                        <div>
+                            <input type="radio" name="TargetPlatform" value="Web" required /> Web
+                        </div>
+                        <div>
+                            <input type="radio" name="TargetPlatform" value="Mobile" /> Mobile
+                        </div>
+                        <div>
+                            <input type="radio" name="TargetPlatform" value="Desktop" /> Desktop
+                        </div>
+                        <div>
+                            <input type="radio" name="TargetPlatform" value="Cross-Platform" /> Cross-Platform
+                        </div>
+                        <div>
+                            <input type="radio" name="TargetPlatform" value="Other" id="otherPlatformOption" /> Other
+                        </div>
+                        <span asp-validation-for="TargetPlatform" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4" id="otherPlatformContainer" style="display:none;">
+                        <label asp-for="OtherPlatform" class="form-label fw-bold">Other Platform</label>
+                        <input asp-for="OtherPlatform" class="form-control" placeholder="Specify other platforms" />
+                        <span asp-validation-for="OtherPlatform" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Features</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="CoreFeatures" class="form-label fw-bold">Core Features</label>
+                        <textarea asp-for="CoreFeatures" class="form-control" rows="4" placeholder="List the core features of your project" required></textarea>
+                        <span asp-validation-for="CoreFeatures" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="AdditionalFeatures" class="form-label fw-bold">Additional Features</label>
+                        <textarea asp-for="AdditionalFeatures" class="form-control" rows="4" placeholder="List any additional features"></textarea>
+                        <span asp-validation-for="AdditionalFeatures" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Design Preferences -->
+                <div class="tab-pane fade" id="design" role="tabpanel" aria-labelledby="design-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Design Preferences</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="UiDesign" class="form-label fw-bold">UI Design</label>
+                        <input asp-for="UiDesign" class="form-control" placeholder="Describe your UI design preferences" />
+                        <span asp-validation-for="UiDesign" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="ColorScheme" class="form-label fw-bold">Color Scheme</label>
+                        <input asp-for="ColorScheme" class="form-control" placeholder="Preferred color scheme" />
+                        <span asp-validation-for="ColorScheme" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Timeline & Budget -->
+                <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Timeline & Budget</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="ExpectedTimeline" class="form-label fw-bold">Expected Timeline</label>
+                        <input asp-for="ExpectedTimeline" class="form-control" placeholder="e.g., 3 months" required />
+                        <span asp-validation-for="ExpectedTimeline" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="BudgetRange" class="form-label fw-bold">Budget Range</label>
+                        <input asp-for="BudgetRange" class="form-control" placeholder="e.g., $10,000 - $15,000" required />
+                        <span asp-validation-for="BudgetRange" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Technical Requirements -->
+                <div class="tab-pane fade" id="technical" role="tabpanel" aria-labelledby="technical-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Technical Requirements</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="TechStack" class="form-label fw-bold">Tech Stack</label>
+                        <input asp-for="TechStack" class="form-control" placeholder="List preferred technologies" required />
+                        <span asp-validation-for="TechStack" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label asp-for="DbRequirements" class="form-label fw-bold">Database Requirements</label>
+                        <input asp-for="DbRequirements" class="form-control" placeholder="Specify database preferences" />
+                        <span asp-validation-for="DbRequirements" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Maintenance & Support -->
+                <div class="tab-pane fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Maintenance & Support</strong></h3>
+                    <div class="form-check mb-3">
+                        <input asp-for="OngoingMaintenance" class="form-check-input" type="checkbox" id="ongoingMaintenance">
+                        <label class="form-check-label" for="ongoingMaintenance">
+                            Ongoing Maintenance
+                        </label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input asp-for="PostLaunchSupport" class="form-check-input" type="checkbox" id="postLaunchSupport">
+                        <label class="form-check-label" for="postLaunchSupport">
+                            Post-Launch Support
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Miscellaneous -->
+                <div class="tab-pane fade" id="miscellaneous" role="tabpanel" aria-labelledby="miscellaneous-tab">
+                    <h3 class="section-title mb-4 text-secondary"><strong>Miscellaneous</strong></h3>
+                    <div class="form-group mb-4">
+                        <label asp-for="Miscellaneous" class="form-label fw-bold">Additional Information</label>
+                        <textarea asp-for="Miscellaneous" class="form-control" rows="4" placeholder="Any other requirements or information"></textarea>
+                        <span asp-validation-for="Miscellaneous" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-5" />
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" id="previousButton">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextButton">Next</button>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var currentTab = 0;
+        showTab(currentTab);
+
+        function showTab(n) {
+            var tabs = document.getElementsByClassName("tab-pane");
+            tabs[n].classList.add("show", "active");
+            updateProgressBar(n);
+            if (n == 0) {
+                document.getElementById("previousButton").style.display = "none";
+            } else {
+                document.getElementById("previousButton").style.display = "inline";
+            }
+            if (n == (tabs.length - 1)) {
+                document.getElementById("nextButton").style.display = "none";
+            } else {
+                document.getElementById("nextButton").style.display = "inline";
+            }
+        }
+
+        document.getElementById("nextButton").onclick = function () {
+            if (validateCurrentTab()) {
+                moveToTab(1);
+            }
+        };
+        document.getElementById("previousButton").onclick = function () {
+            moveToTab(-1);
+        };
+
+        function moveToTab(step) {
+            var tabs = document.getElementsByClassName("tab-pane");
+            tabs[currentTab].classList.remove("show", "active");
+            currentTab += step;
+            showTab(currentTab);
+        }
+
+        function validateCurrentTab() {
+            var currentTabContent = document.getElementsByClassName("tab-pane")[currentTab];
+            var requiredFields = currentTabContent.querySelectorAll("[required]");
+            for (var i = 0; i < requiredFields.length; i++) {
+                if (!requiredFields[i].value.trim()) {
+                    requiredFields[i].classList.add("is-invalid");
+                    return false;
+                } else {
+                    requiredFields[i].classList.remove("is-invalid");
+                }
+            }
+            return true;
+        }
+
+        function updateProgressBar(n) {
+            var progressBar = document.getElementById("progressBar");
+            var totalTabs = document.getElementsByClassName("tab-pane").length;
+
+            // Set progress based on the current tab index
+            var progress;
+            if (n === 0) {
+                progress = 0; // Show 0% on the first tab
+            } else if (n === totalTabs - 1) {
+                progress = 100; // Show 100% on the last tab
+            } else {
+                progress = ((n + 1) / totalTabs) * 100; // Calculate progress for other tabs
+            }
+
+            progressBar.style.width = progress + "%";
+            progressBar.setAttribute("aria-valuenow", progress);
+            progressBar.textContent = Math.round(progress) + "%";
+        }
+
+        // Show/hide other platform input field
+        document.getElementById("otherPlatformOption").onclick = function () {
+            document.getElementById("otherPlatformContainer").style.display = "block";
+        };
+    </script>
+}
