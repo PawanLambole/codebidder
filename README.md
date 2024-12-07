@@ -5,10 +5,12 @@ CodeBidder is a platform that connects developers with clients, facilitating pro
 ## Features
 
 - User Authentication & Authorization
-- Project Posting & Bidding System
-- Real-time Communication
+- Project Submit
+- Submit Quotations
+- Contact Developer
+- Print Quotation report
 - Project Management Tools
-- Secure Payment Integration
+
 
 ## Technologies Used
 
@@ -27,6 +29,4 @@ CodeBidder is a platform that connects developers with clients, facilitating pro
 - SQL Server
 - Visual Studio 2019 or later (recommended)
 
-### Installation
 
-1. Clone the repository
