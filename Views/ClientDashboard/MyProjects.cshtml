@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CodeBidder.Models.ProjectDetailsModel>
+
+@{
+    ViewData["Title"] = "My Projects";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">My Projects</h1>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        var projectNumber = 1; // Initialize project number counter
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="card shadow-sm border-light">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h5 class="mb-0">Project No. @projectNumber</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.ProjectName)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.ProjectDescription)</p>
+                            <div class="text-center">
+                                <a href="@Url.Action("MyProjectsD", "ClientDashboard", new { projectId = item.Id })" class="btn btn-success">Show Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                projectNumber++; // Increment project number for the next iteration
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">No projects found.</div>
+    }
+</div>
+
+<style>
+    .card {
+        border-radius: 8px; /* Rounded corners for the cards */
+    }
+
+    .card-header {
+        border-bottom: none; /* Remove bottom border from card header */
+    }
+</style>

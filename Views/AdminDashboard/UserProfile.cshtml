@@ -1,0 +1,56 @@
+﻿@model CodeBidder.Models.User
+
+
+@{
+    ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/aLayout.cshtml"; // Adjust based on your project structure
+}
+
+<div class="container mt-5">
+    <!-- Combined Profile Card -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header  text-white" style="background-color: #395A7F; ">
+            <h5 class="mb-0">Profile Details</h5>
+        </div>
+        <div class="card-body">
+            <!-- Profile Header -->
+            <div class="d-flex align-items-center mb-4">
+                <div>
+                    <h4 class="fw-bold" style="color: #395A7F;">@Model.FirstName @Model.LastName</h4>
+                    <p class="text-muted">@Model.UserType</p>
+                </div>
+            </div>
+            <!-- Profile Details -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Mobile Number:</strong> @Model.MobileNumber</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Username:</strong> @Model.Username</p>
+                </div>
+            </div>
+            <!-- Actions Section -->
+            <div>
+                @if (Model.UserType == "Client")
+                {
+                    <button class="btn btn-success me-2" onclick="location.href='@Url.Action("UserProjects", "AdminDashboard", new { userId = Model.Id })'">
+                        View User Projects
+                    </button>
+                }
+                <button class="btn btn-danger" onclick="confirmDelete(@Model.Id)">
+                    Delete User
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Script -->
+<script>
+    function confirmDelete(userId) {
+        if (confirm("Are you sure you want to delete this user?")) {
+            location.href = '@Url.Action("DeleteUser", "AdminDashboard")' + '?id=' + userId;
+        }
+    }
+</script>

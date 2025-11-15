@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CodeBidder.Models.User>
+@{
+    ViewData["Title"] = "ManageDevelopers";
+    Layout = "~/Views/Shared/aLayout.cshtml";
+}
+
+<div>
+    <main class=" ms-auto mt-5 px-4">
+        <div class="container" style="margin-top: 50px;">
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold" style="color: #395A7F;">Manage developers</h4>
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Adddeveloper")'">
+                    Add New developer
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="mb-4">
+                <form class="d-flex">
+                    <input type="text" class="form-control me-2" placeholder="Search developers by name or email">
+                    <button type="submit" class="btn btn-outline-primary">Search</button>
+                </form>
+            </div>
+
+            <!-- developers Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover shadow-sm">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var developer in Model)
+                            {
+                                <tr>
+                                    <td>@developer.Id</td>
+                                    <td>@developer.FirstName @developer.LastName</td>
+                                    <td>@developer.Email</td>
+                                    <td>@developer.MobileNumber</td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <button class="btn btn-outline-primary btn-sm" onclick="location.href='@Url.Action("UserProfile", "AdminDashboard", new { id = developer.Id })'">
+                                                View Details
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center">No developers found</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
