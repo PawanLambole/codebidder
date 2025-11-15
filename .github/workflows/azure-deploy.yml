@@ -8,7 +8,6 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: codebidder    # Set this to your app name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'   # Set this to the path to your web app project
   DOTNET_VERSION: '8.0.x'          # Set this to the .NET version to use
 
 jobs:
@@ -24,19 +23,19 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore CodeBidder.sln
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build CodeBidder.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish CodeBidder.sln -c Release -o ${{github.workspace}}/publish
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{github.workspace}}/publish
 
   deploy:
     runs-on: ubuntu-latest
