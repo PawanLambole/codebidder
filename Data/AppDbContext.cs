@@ -17,7 +17,7 @@ namespace CodeBidder.Data
 
         public DbSet<UserProject> UserProject { get; set; }
 
-
+        public DbSet<Quotation> Quotations { get; set; }
 
 
 
