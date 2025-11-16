@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: codebidder    # Set this to your app name
-  DOTNET_VERSION: '8.0.x'          # Set this to the .NET version to use
+  AZURE_WEBAPP_NAME: codebidder-hrdec0bsaxf9hggj    # Your actual Azure Web App name
+  DOTNET_VERSION: '8.0.x'
 
 jobs:
   build:
