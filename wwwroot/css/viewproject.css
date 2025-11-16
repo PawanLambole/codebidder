@@ -1,0 +1,15 @@
+﻿/* Responsive Layout */
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .btn-outline-primary {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}

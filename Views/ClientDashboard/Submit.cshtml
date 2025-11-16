@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Submit";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card text-center shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Submission Successful!</h3>
+        </div>
+        <div class="card-body">
+            <h1 class="display-4 text-success">🎉 Project Submitted Successfully!</h1>
+            <p class="lead">Thank you for submitting your project details. Our team will review your submission and get back to you shortly.</p>
+            <hr class="my-4" />
+            <p>In the meantime, feel free to explore more options or return to the homepage.</p>
+            <a href="@Url.Action("Index", "ClientDashboard")" class="btn btn-primary btn-lg">Go to Homepage</a>
+            <a href="@Url.Action("Requirements", "ClientDashboard")" class="btn btn-secondary btn-lg">Submit Another Project</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
+
+    .card {
+        border-radius: 10px; /* Rounded corners for the card */
+    }
+
+    .btn {
+        margin: 10px; /* Spacing between buttons */
+    }
+</style>

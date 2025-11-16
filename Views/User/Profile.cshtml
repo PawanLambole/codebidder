@@ -1,0 +1,52 @@
+﻿@model CodeBidder.Models.User
+
+@{
+    ViewData["Title"] = "User Profile";
+    Layout = "~/Views/Shared/ULayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Profile: @Model.Username</h1>
+
+    <div class="card shadow-sm border-light">
+        <div class="card-header" style="background-color: #395A7F; color: white;">
+            <h5 class="mb-0">Profile Details</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Full Name:</strong> @Model.FirstName @Model.LastName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>User Type:</strong> @Model.UserType</p>
+
+            <div class="mt-4">
+                <a href="@Url.Action("Update", "User")" class="btn" style="background-color: #395A7F; color: white;">Update Profile</a>
+                <a href="@Url.Action("DeleteAccount", "User")" class="btn btn-danger ms-3">Delete Account</a>
+                <a href="@Url.Action("Logout", "User")" class="btn btn-outline-primary ms-3">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 8px; /* Rounded corners for the cards */
+    }
+
+    .card-header {
+        border-bottom: none; /* Remove bottom border from card header */
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        text-align: center;
+        font-weight: bold;
+        display: inline-block;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #3f6e9f; /* Slightly lighter shade of the primary color */
+        color: #fff;
+        text-decoration: none;
+    }
+</style>

@@ -1,0 +1,46 @@
+﻿@model CodeBidder.Models.ContactDeveloperViewModel
+
+@{
+    ViewData["Title"] = "Contact Developer";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-white text-center" style="background-color: #395A7F;">
+                    <h3>Contact Developer: @Model.DeveloperFirstName @Model.DeveloperLastName</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Email:</strong> @Model.DeveloperEmail</p>
+                    <p><strong>Mobile Number:</strong> @Model.DeveloperMobileNumber</p>
+
+                    <div class="d-grid mt-4">
+                        <a href="mailto:@Model.DeveloperEmail" class="btn btn-primary">Send Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    button.btn-primary {
+        background-color: #395A7F;
+        border-color: #395A7F;
+    }
+
+    button.btn-primary:hover {
+        background-color: #2d4a6c;
+    }
+</style>

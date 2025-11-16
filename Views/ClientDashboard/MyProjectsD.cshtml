@@ -1,0 +1,228 @@
+﻿@model CodeBidder.Models.ProjectDetailsModel
+
+@{
+    ViewData["Title"] = "Project Details";
+    Layout = "~/Views/Shared/ClientLayout.cshtml";
+    // Include Font Awesome and Google Fonts for a modern typography and icons
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+}
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f0f2f5, #dfe9f3);
+        color: #333;
+    }
+
+    .container {
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        color: #333;
+    }
+
+    .card {
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .card-header {
+        background: linear-gradient(135deg, #0062cc, #004b8d);
+        color: white;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        text-align: center;
+        padding: 15px;
+    }
+
+        .card-header h5 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+    .card-body {
+        padding: 30px 40px;
+    }
+
+    h6 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    .card-text {
+        margin-bottom: 15px;
+        color: #444;
+    }
+
+    .list-group-item {
+        border: 0;
+        padding-left: 0;
+        background-color: transparent;
+    }
+
+    .icon {
+        margin-right: 8px;
+        color: #007bff;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #28a745, #218838);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease-in-out;
+        border-radius: 50px;
+    }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            transform: scale(1.05);
+        }
+
+    /* Step Navigation */
+    .step {
+        display: none; /* Hide all steps by default */
+    }
+
+    .active {
+        display: block; /* Show the active step */
+    }
+</style>
+
+<div class="container">
+    <h1 class="text-center mb-5">Project Details</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header">
+                    <h5>@Html.DisplayFor(model => model.ProjectName)</h5>
+                </div>
+                <div class="card-body">
+
+                    <!-- Step 1: Project Overview -->
+                    <div class="step active" id="step1">
+                        <h6>Description:</h6>
+                        <p class="card-text">@Html.DisplayFor(model => model.ProjectDescription)</p>
+                        <h6>Target Platform:</h6>
+                        <p class="card-text"><i class="fas fa-desktop icon"></i> @Html.DisplayFor(model => model.TargetPlatform)</p>
+
+                        @if (!string.IsNullOrEmpty(Model.OtherPlatform))
+                        {
+                            <h6>Other Platform:</h6>
+                            <p class="card-text">@Html.DisplayFor(model => model.OtherPlatform)</p>
+                        }
+                    </div>
+
+                    <!-- Step 2: Features -->
+                    <div class="step" id="step2">
+                        <h6>Core Features:</h6>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item">@Html.DisplayFor(model => model.CoreFeatures)</li>
+                        </ul>
+
+                        @if (!string.IsNullOrEmpty(Model.AdditionalFeatures))
+                        {
+                            <h6>Additional Features:</h6>
+                            <p class="card-text">@Html.DisplayFor(model => model.AdditionalFeatures)</p>
+                        }
+                    </div>
+
+                    <!-- Step 3: Design and Budget -->
+                    <div class="step" id="step3">
+                        <h6>UI Design:</h6>
+                        <p class="card-text"><i class="fas fa-paint-brush icon"></i> @Html.DisplayFor(model => model.UiDesign)</p>
+
+                        @if (!string.IsNullOrEmpty(Model.ColorScheme))
+                        {
+                            <h6>Color Scheme:</h6>
+                            <p class="card-text">@Html.DisplayFor(model => model.ColorScheme)</p>
+                        }
+
+                        <h6>Budget Range:</h6>
+                        <p class="card-text"><i class="fas fa-dollar-sign icon"></i> @Html.DisplayFor(model => model.BudgetRange)</p>
+                    </div>
+
+                    <!-- Step 4: Timeline and Maintenance -->
+                    <div class="step" id="step4">
+                        <h6>Expected Timeline:</h6>
+                        <p class="card-text"><i class="fas fa-calendar-alt icon"></i> @Html.DisplayFor(model => model.ExpectedTimeline)</p>
+
+                        <h6>Maintenance & Support:</h6>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item">
+                                <i class="fas fa-tools icon"></i> Ongoing Maintenance: @Html.DisplayFor(model => model.OngoingMaintenance)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-life-ring icon"></i> Post-Launch Support: @Html.DisplayFor(model => model.PostLaunchSupport)
+                            </li>
+                        </ul>
+
+                        @if (!string.IsNullOrEmpty(Model.Miscellaneous))
+                        {
+                            <h6>Miscellaneous:</h6>
+                            <p class="card-text">@Html.DisplayFor(model => model.Miscellaneous)</p>
+                        }
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <button class="btn" id="backBtn" onclick="navigate(-1)" disabled>
+                        <i class="fas fa-arrow-left icon text-white"></i> Back
+                    </button>
+                    <button class="btn" id="nextBtn" onclick="navigate(1)">
+                        <i class="fas fa-arrow-right icon text-white"></i> Next
+                    </button>
+                    <button class="btn" id="closeBtn" onclick="closeForm()">
+                        <i class="fas fa-times-circle icon text-white"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll(".step");
+    const nextBtn = document.getElementById("nextBtn");
+    const backBtn = document.getElementById("backBtn");
+
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            step.classList.toggle("active", index === stepIndex);
+        });
+
+        backBtn.disabled = stepIndex === 0; // Disable Back button on first step
+        nextBtn.style.display = stepIndex === steps.length - 1 ? "none" : "inline-block"; // Hide Next button on the last step
+    }
+
+    function navigate(direction) {
+        currentStep += direction;
+        showStep(currentStep);
+    }
+
+    // Initialize the first step
+    showStep(currentStep);
+
+    function closeForm() {
+        window.location.href = '@Url.Action("MyProjects", "ClientDashboard")'; // Redirect to MyProjects action
+    }
+</script>

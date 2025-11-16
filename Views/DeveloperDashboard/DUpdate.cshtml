@@ -1,0 +1,80 @@
+﻿@model CodeBidder.ViewModels.UpdateProfileViewModel
+
+@{
+    ViewData["Title"] = "Update Profile";
+    Layout = "~/Views/Shared/DeveloperLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4" style="color: #395A7F;">Update Profile</h1>
+
+    <div class="card shadow-sm border-light">
+        <div class="card-header" style="background-color: #395A7F; color: white;">
+            <h5 class="mb-0">Edit Your Details</h5>
+        </div>
+        <div class="card-body">
+            <!-- Update Profile Form -->
+            <form asp-action="DUpdate" method="post">
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="MobileNumber" class="form-label">Mobile Number</label>
+                    <input asp-for="MobileNumber" class="form-control" />
+                    <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Username</label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Save Changes</button>
+                <a href="@Url.Action("DProfile", "DeveloperDashboard")" class="btn btn-outline-secondary ms-3">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@* Validation script (make sure validation is enabled in the layout) *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .card {
+        border-radius: 8px;
+    }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .btn:hover {
+            background-color: #3f6e9f;
+            color: #fff;
+        }
+</style>

@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="d-flex flex-column min-vh-100" style="color: #2C3E50; font-family: 'Poppins', sans-serif;">
+    <!-- Background Image -->
+    <img src="/css/home.jpg" alt="Background Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+
+    <!-- Main Content -->
+    <div class="container text-center flex-grow-1" style="position: relative; z-index: 1;">
+        <header class="py-5" style="border-radius: 1rem;">
+            <h1 class="display-4" style="color: #395A7F; font-weight: 700;">Turn Your Ideas into Reality</h1>
+            <p class="lead" style="color: #6E9FC1;">Submit your project requirements and get custom quotes from expert developers.</p>
+
+            <div class="mt-4">
+                <a href="javascript:void(0);" onclick="redirectToLogin()" class="btn btn-lg mx-2" style="border-radius: 0.75rem; background-color: #395A7F; color: #FFFFFF; padding: 0.8rem 2rem;">Start Your Project</a>
+                <a href="javascript:void(0);" onclick="redirectToLogin()" class="btn btn-lg mx-2" style="border-radius: 0.75rem; border: 2px solid #395A7F; color: #395A7F; padding: 0.8rem 2rem;">Join as Developer</a>
+            </div>
+        </header>
+
+        <section class="my-5">
+            <h2 style="color: #395A7F; font-weight: 600;">Why Choose Us?</h2>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card" style="border: none; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #395A7F;">Custom Solutions</h5>
+                            <p class="card-text" style="color: #6E9FC1;">Tailored software solutions for your unique business needs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card" style="border: none; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #395A7F;">Expert Developers</h5>
+                            <p class="card-text" style="color: #6E9FC1;">Work with highly qualified and experienced developers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card" style="border: none; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #395A7F;">Affordable Pricing</h5>
+                            <p class="card-text" style="color: #6E9FC1;">Get competitive quotes and choose the best value for money.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card" style="border: none; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #395A7F;">Project Management</h5>
+                            <p class="card-text" style="color: #6E9FC1;">Manage your project effectively with integrated tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-5">
+            <h2 style="color: #395A7F; font-weight: 600;">How It Works</h2>
+            <ol class="list-group list-group-numbered" style="color: #395A7F; background-color: transparent; font-weight: 500;">
+                <li class="list-group-item" style="background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 1rem;">Submit Your Requirements: Clients submit their project details.</li>
+                <li class="list-group-item" style="background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 1rem;">Developers Provide Quotes: Developers send project quotations.</li>
+                <li class="list-group-item" style="background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 1rem;">Compare and Select: Clients compare quotes and select the developer.</li>
+                <li class="list-group-item" style="background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 1rem;">Start the Project: Project development begins after agreement.</li>
+            </ol>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start" style="width: 100%; background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-top: 1px solid #395A7F;">
+        <div class="container p-4">
+            <!-- Section: Copyright -->
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <!-- Copyright -->
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <div class="p-3">
+                            <p style="margin: 0; font-weight: bold;">© 2024 <span style="color: #395A7F;">CodeBidder</span>. All Rights Reserved.</p>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-4 text-center text-md-end">
+                        <p style="margin: 0;">Contact Us:</p>
+                        <p style="margin: 0;">Email: <a href="mailto:info@CodeBidder.com" style="color: #395A7F;">info@CodeBidder.com</a></p>
+                        <p style="margin: 0;">Phone: <a href="tel:+1234567890" style="color: #395A7F;">(123) 456-7890</a></p>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Copyright -->
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
+
+</div>
+
+<!-- JavaScript to redirect to the login page -->
+@section Scripts {
+    <script>
+        function redirectToLogin() {
+            window.location.href = '@Url.Action("Login", "User")';
+        }
+    </script>
+}

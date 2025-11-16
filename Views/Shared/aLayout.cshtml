@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid">
+            <!-- Sidebar Toggle Button (Small Screens) -->
+            <button class="btn btn-primary d-lg-none me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <!-- Brand Name -->
+            <a class="navbar-brand fw-bold" style="color: #395A7F;" href="#">CodeBidder</a>
+
+            <!-- Right-side Search and Admin Menu -->
+            <div class="d-flex align-items-center ms-auto">
+                <form class="d-flex me-3" method="get" action="/AdminDashboard/Search">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query">
+                    <button class="btn btn-primary ms-2" type="submit">Search</button>
+                </form>
+
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" asp-controller="User" asp-action="Logout">Logout</a></li>
+                        <li>
+                            <a class="dropdown-item" href="@Url.Action("AddAdmin", "AdminDashboard")">
+                                Add New Admin
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="offcanvas offcanvas-start" style="background-color: #395A7F; color: white;" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">Admin Dashboard</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <nav class="nav flex-column">
+                <a class="nav-link px-3 py-2 text-white" href=" @Url.Action("AIndex", "AdminDashboard")">Dashboard Overview</a>
+                <a class="nav-link px-3 py-2 text-white" href="@Url.Action("ManageClients", "AdminDashboard")">Manage Clients</a>
+                <a class="nav-link px-3 py-2 text-white" href="@Url.Action("ManageDevelopers", "AdminDashboard")">Manage Developers</a>
+               <!-- <a class="nav-link px-3 py-2 text-white" href="#">Active Projects</a>
+                <a class="nav-link px-3 py-2 text-white" href="#">Pending Approvals</a>
+                <a class="nav-link px-3 py-2 text-white" href="#">Quotations</a>
+                <a class="nav-link px-3 py-2 text-white" href="#">Reports</a>
+                <a class="nav-link px-3 py-2 text-white" href="#">Settings</a>
+                <a class="nav-link px-3 py-2 text-white" href="#">Support</a>-->
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar for large screens -->
+            <div class="col-lg-2 d-none d-lg-block vh-100" style="background-color: #395A7F; color: white;">
+                <div class="text-center py-4 fw-bold">Admin Dashboard</div>
+                <nav class="nav flex-column">
+                    <a class="nav-link px-3 py-2 text-white" href=" @Url.Action("AIndex", "AdminDashboard")">Dashboard Overview</a>
+                    <a class="nav-link px-3 py-2 text-white" href="@Url.Action("ManageClients", "AdminDashboard")">Manage Clients</a>
+                    <a class="nav-link px-3 py-2 text-white" href="@Url.Action("ManageDevelopers", "AdminDashboard")">Manage Developers</a>
+                    <!-- <a class="nav-link px-3 py-2 text-white" href="#">Active Projects</a>
+                    <a class="nav-link px-3 py-2 text-white" href="#">Pending Approvals</a>
+                    <a class="nav-link px-3 py-2 text-white" href="#">Quotations</a>
+                    <a class="nav-link px-3 py-2 text-white" href="#">Reports</a>
+                    <a class="nav-link px-3 py-2 text-white" href="#">Settings</a>
+                    <a class="nav-link px-3 py-2 text-white" href="#">Support</a>-->
+                </nav>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-lg-10 mt-5 ">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

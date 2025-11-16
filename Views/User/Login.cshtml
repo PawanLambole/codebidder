@@ -1,0 +1,70 @@
+@model CodeBidder.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_lLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeBidder.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-lg" style="padding: 20px;">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Login</h3>
+                        <form asp-action="Login" method="post">
+                            <!-- Username field -->
+                            <div class="form-group mb-3">
+                                <label asp-for="Username" class="control-label"></label>
+                                <input asp-for="Username" class="form-control" placeholder="Enter Username" required />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+
+                            <!-- Password field -->
+                            <div class="form-group mb-3">
+                                <label asp-for="Password" class="control-label"></label>
+                                <input asp-for="Password" class="form-control" type="password" placeholder="Enter Password" required />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <!-- Login type dropdown -->
+                            <div class="form-group mb-3">
+                                <label for="loginType">Login Type</label>
+                                <select id="loginType" class="form-control" name="LoginType" required>
+                                    <option value="">Select Login Type</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="Client">Client</option>
+                                </select>
+                            </div>
+
+                            <!-- Submit button -->
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Login</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a asp-action="Register">Register here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

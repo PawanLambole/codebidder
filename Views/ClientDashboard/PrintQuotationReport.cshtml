@@ -1,0 +1,127 @@
+﻿@model CodeBidder.Models.Quotation
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #000;
+            background-color: #fff;
+            line-height: 2; /* Increased line spacing */
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+            .section h3 {
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+                border-bottom: 1px solid #000;
+                padding-bottom: 5px;
+            }
+
+        .details p {
+            margin: 10px 0; /* Increased vertical spacing between paragraphs */
+            font-size: 1rem;
+        }
+
+        .details strong {
+            font-weight: bold;
+        }
+
+        /* Page Break for Print */
+        .page-break {
+            page-break-after: always;
+        }
+
+        /* Print Button Styling */
+        .print-button {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+            .print-button button {
+                padding: 10px 15px;
+                font-size: 1rem;
+                background-color: #395A7F;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .print-button button:hover {
+                    background-color: #2c456b;
+                }
+    </style>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <h2>Quotation Report By CodeBidder</h2>
+    
+
+    <!-- Project Details Section (Page 1) -->
+    <div class="section">
+        <h3>Project Details</h3>
+        <div class="details">
+            <p><strong>Project Name:</strong> @Model.Project?.ProjectName</p>
+            <p><strong>Description:</strong> @Model.Project?.ProjectDescription</p>
+            <p><strong>Intended Audience:</strong> @Model.Project?.IntendedAudience</p>
+            <p><strong>Competitors:</strong> @Model.Project?.Competitors</p>
+            <p><strong>Project Scope:</strong> @Model.Project?.ProjectScope</p>
+            <p><strong>Target Platform:</strong> @Model.Project?.TargetPlatform</p>
+            <p><strong>Other Platform:</strong> @Model.Project?.OtherPlatform</p>
+            <p><strong>Core Features:</strong> @Model.Project?.CoreFeatures</p>
+            <p><strong>Additional Features:</strong> @Model.Project?.AdditionalFeatures</p>
+            <p><strong>UI Design Preferences:</strong> @Model.Project?.UiDesign</p>
+            <p><strong>Color Scheme:</strong> @Model.Project?.ColorScheme</p>
+        </div>
+    
+
+    
+
+   
+            
+            <p><strong>Expected Timeline:</strong> @Model.Project?.ExpectedTimeline</p>
+            <p><strong>Budget Range:</strong> @Model.Project?.BudgetRange</p>
+            <p><strong>Tech Stack:</strong> @Model.Project?.TechStack</p>
+            <p><strong>Database Requirements:</strong> @Model.Project?.DbRequirements</p>
+            <p><strong>Ongoing Maintenance:</strong> @Model.Project?.OngoingMaintenance</p>
+            <p><strong>Post Launch Support:</strong> @Model.Project?.PostLaunchSupport</p>
+            <p><strong>Miscellaneous Notes:</strong> @Model.Project?.Miscellaneous</p>
+
+    </div>
+    <!-- Page Break -->
+    <div class="page-break"></div>
+
+    <!-- Quotation Details Section -->
+    <div class="section">
+        <h3>Quotation Details</h3>
+        <div class="details">
+            <p><strong>Quotation By:</strong> @Model.Developer?.Username</p>
+            <p><strong>Estimated Cost:</strong> @Model.EstimatedCost</p>
+            <p><strong>Estimated Timeline:</strong> @Model.Timeline days</p>
+            <p><strong>Additional Notes:</strong> @Model.AdditionalDetails</p>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <div class="print-button">
+        <button onclick="window.print()">Print</button>
+    </div>
+</body>
+</html>
